@@ -1,1 +1,6 @@
-The Django Blog project!
+One Django Blog project!
+
+regint
+login
+post
+repost
