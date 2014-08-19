@@ -1,1 +1,1 @@
-The Django Blog
+The Django Blog project!
