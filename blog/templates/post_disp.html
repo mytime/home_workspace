@@ -1,0 +1,9 @@
+<h3>{{post.title}}</h3>
+<p>{{post.content}}</p>
+<div>
+	{% for reply in post.reply_set.all %}
+	<li>{{reply.content}}</li>
+	{% endfor%}
+
+</div>
+<div><a href="/blog/{{post.id}}/reply/">回帖</a></div>

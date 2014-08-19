@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Login !</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen"></head>
+<body>
+
+	<div class="container">
+		<h3>登录</h3>
+		<form method='post'>{% csrf_token %}
+			<table>
+				{{ urf.as_table}}
+				<tr>
+					<td>
+						<input type="submit" value="用户登录" class="btn" id="sbm" />
+					</td>
+				</tr>
+			</table
+		</form>
+		</div>
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+		<script>
+		function valid_username(){
+			var username = $("#id_username").val();
+			if(username.length < 4 ){
+				return false;
+			}else{
+				return true;
+			}
+		}
+		/*
+		function valid_email(){
+			var email = $("#id_email").val();
+			var pattern = new RegExp(/^\w+@\w+\.\w+$/);
+			return pattern.test(email);
+		}
+		
+		function valid_password(){
+			var password = $("#id_password").val();
+			var repassword = $("#id_repassword").val();
+			if(password.length < 6 ){
+				return false;
+			}
+			if(password == repassword){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		*/
+		$(document).ready(function(){
+			$("#sbm").click(function(event){
+				var is_submit = true;
+				
+				if(!valid_username()){
+					is_submit = false;
+					alert("长度不能少于4位")
+				}
+				/*
+				if(!valid_email()){
+					is_submit = false;
+					alert("邮箱地址有误")
+				}
+				
+				if(!valid_password()){
+					is_submit = false;
+					alert("口令长度不能少于6位或两次输入密码不同")
+				}
+				*/				
+				if(!is_submit){
+					event.preventDefault();
+				}
+				
+			})
+		});
+		</script>
+</body>
+	</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Index!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen"></head>
+<body>
+	<div class="container">
+		<h1>index page</h1>
+		<div>
+			{% csrf_token %}
+		{% if user.is_authenticated %}
+			<p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+			<a href='/blog/logout/'>注销</a>
+			{% else %}
+			<p>
+				Welcom,new user.Please
+				<a href='/blog/login/'>login</a>
+				|
+				<a href='/blog/regist/'>注册</a>
+				.
+			</p>
+			{% endif %}
+		</div>
+		<div>
+			{%for post in posts%}
+			<div>
+				<h4> <a href="/blog/{{post.id}}">{{post.title}}</a></h4>
+			</div>
+			{%endfor%}
+		</div>
+
+	</div>
+
+</body>
+</html>

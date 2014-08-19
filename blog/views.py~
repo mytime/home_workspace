@@ -1,0 +1,29 @@
+#coding:utf8
+from django.shortcuts import render, redirect	#导入redirect 重定向
+#from django.http import HttpResponse
+from blog.forms import UserRegistForm	#导入form.py里的UserRegistForm对象
+from django.contrib.auth.models import User	#连接数据库
+
+def regist_user(req):
+	if req.method == "POST":
+		urf = UserRegistForm(req.POST)
+		if urf.is_valid():
+		
+			#print urf.cleaned_data
+			username = urf.cleaned_data.get('username')
+			email = urf.cleaned_data.get('email')
+			password = urf.cleaned_data.get('password')
+			#插入数据库
+			User.objects.create_user(username=username, 
+				password=password ,email=email)
+			
+			#return HttpResponse('regist ok!')
+			return redirect('/login/')
+	else:
+		urf = UserRegistForm()
+	return render(req,'regist.html',{'urf':urf})
+	
+	
+def login_user(req):
+	pass
+	
